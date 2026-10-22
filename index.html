@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e8559a"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Coffeebreak Headphone and Speaker</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.png">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#ffe3f0;color:#6b1240;text-align:center;font-size:22px}
+main{max-width:480px;margin:0 auto;padding:14px 16px 8px;min-height:100vh;display:flex;flex-direction:column;gap:14px}
+header{display:flex;align-items:center;justify-content:center;gap:10px}header img{width:52px;height:52px;border-radius:12px}h1{font-size:23px;margin:0}
+#st{font-size:26px;font-weight:700;min-height:34px}#st.ok{color:#178a3a}
+button,input,select{font:inherit;border-radius:18px;border:0}input{padding:14px;border:2px solid #6b1240;width:100%;font-size:24px;text-align:center;background:#fff}
+.big{padding:22px;font-size:30px;font-weight:800;color:#fff;background:#e8559a;width:100%}
+#go{font-size:42px;padding:34px 10px;background:#1aa34a}#go.stop{background:#d02b2b}
+#play{font-size:40px;padding:34px 10px;background:#e8559a}#play.on{background:#1aa34a}
+.row{display:flex;gap:10px}.sm{flex:1;padding:14px 6px;font-size:19px;background:#ffc2dc;color:#6b1240}.sm.on{background:#6b1240;color:#fff}
+.hide{display:none!important}label{font-size:20px}input[type=range]{padding:0;border:0;width:100%;accent-color:#e8559a;height:36px}
+#qr{margin:0 auto;width:132px;height:132px;background:#fff;padding:6px;border-radius:10px}#qr img,#qr canvas{width:120px;height:120px}
+#share{background:#6b1240}.note{font-size:16px;opacity:.85;margin:0}footer{font-size:12px;opacity:.8;margin-top:auto;padding-top:8px}
+</style></head><body><main>
+<header><img src="logo.png" alt="Coffeebreak"><h1>Coffeebreak<br>Headphone and Speaker</h1></header>
+<section id="setup" class="hide"><p>Your name</p><input id="nm" autocomplete="off" placeholder="name"><p></p><button class="big" id="start">Start</button></section>
+<section id="app" class="hide" style="display:flex;flex-direction:column;gap:14px">
+ <div id="st">Starting…</div>
+ <div class="row"><button class="sm on" id="mSend">Send sound</button><button class="sm" id="mHear">Be the headphone</button></div>
+ <div id="send">
+  <div class="row"><button class="sm on" data-src="mic">Microphone</button><button class="sm" data-src="song">Song file</button><button class="sm" data-src="tab" id="tabBtn">Tab sound</button></div>
+  <input type="file" id="file" accept="audio/*" class="hide"><p class="note" id="songName"></p>
+  <button class="big" id="go">Start</button>
+  <label>Volume<input type="range" id="sv" min="0" max="2" step="0.05" value="1"></label>
+  <p class="note" id="cnt">No one listening yet</p>
+ </div>
+ <div id="hear" class="hide">
+  <div class="row"><input id="from" placeholder="sender name" autocomplete="off"><button class="sm" id="listenBtn" style="flex:0 0 110px">Listen</button></div>
+  <button class="big" id="play">Waiting</button>
+  <label>Volume<input type="range" id="hv" min="0" max="1" step="0.05" value="1"></label>
+  <div class="row"><button class="sm" id="mute">Mute</button><button class="sm" id="out">Use my headset</button><button class="sm hide" id="air">AirPlay</button></div>
+ </div>
+ <button class="big" id="share">Share my link</button>
+ <div id="qr"></div>
+ <p class="note">This is an app, so it won't show up as Bluetooth headphones in phone settings. Sound plays through whatever is connected to the listening phone. On iPhone and iPad keep this app on screen.</p>
+</section>
+<audio id="au" autoplay playsinline x-webkit-airplay="allow"></audio><audio id="songEl" class="hide" playsinline></audio>
+<footer>© Karen O'Brien (Coffeebreak). Karen O'Brien keeps all rights to this app, its design, name and logo. You may resell a physical phone you bought, but you may not copy this app or make your own version of it.</footer>
+</main>
+<script src="peerjs.min.js"></script><script src="qrcode.min.js"></script><script src="link.js"></script><script src="app.js"></script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){})</script>
+</body></html>
